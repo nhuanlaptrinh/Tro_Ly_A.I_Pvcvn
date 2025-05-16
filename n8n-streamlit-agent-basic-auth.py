@@ -11,6 +11,8 @@ def rfile(name_file):
             st.error(f"File {name_file} không tồn tại.")
 
 
+
+#Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZGU5MDFmMy1iYjY3LTQzOTAtODZjZi0wMmQzZWNlODBjNzQiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzQ3NDAzMjc1fQ.2vwkjUi3iRZPsLxeiM4LUuAKaJu6na3ul4gcunOR1Oc
 # Constants
 WEBHOOK_URL = rfile("WEBHOOK_URL.txt").strip()
 BEARER_TOKEN = st.secrets.get("BEARER_TOKEN")
