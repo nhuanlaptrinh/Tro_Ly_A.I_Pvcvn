@@ -2,14 +2,13 @@ import streamlit as st
 import requests
 import uuid
 from supabase import create_client, Client
-
-SUPABASE_URL = "https://ipacyvrxjfihljfqzadj.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlwYWN5dnJ4amZpaGxqZnF6YWRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxOTI3ODEsImV4cCI6MjA2Mjc2ODc4MX0.baOlVu9mFvdQpKmpraksvkGuS9gt8XzpIsNEQcPpqOw"
-BEARER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjN2Y1MTU2My00YzdhLTRlZjgtYmIyMC1mNTAxZGI4ZDc3OWUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzQ3MjAyMTM2fQ.zxA-7lk6iV6_73yFzOPrZrKEG3k7B18Sn5zBzD1m000"
+import pdb; 
+SUPABASE_URL = "https://udhqcykbowcrkstrzbkm.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVkaHFjeWtib3djcmtzdHJ6YmttIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc0OTE4NjUsImV4cCI6MjA2MzA2Nzg2NX0.DwRQGhgnyIXXYE_U4endpQFBNHJutLNNBq6CwHVN7ms"
+WEBHOOK_URL = "https://n8n.srv819221.hstgr.cloud/webhook-test/invoke-supabase-agent"
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-WEBHOOK_URL = "https://anhlaptrinh.online/webhook-test/invoke_agent"
 
 def rfile(name_file):
     try:
@@ -38,10 +37,9 @@ def signup(email: str, password: str):
         return None
 
 def send_message_to_llm(session_id: str, message: str, access_token : str):
-    print(f"Access Token: {access_token}")
 
     headers = {
-        "Authorization": f"Bearer {BEARER_TOKEN }",
+        "Authorization": f"Bearer {access_token }",
         "Content-Type": "application/json"
     }
     payload = {
@@ -49,12 +47,11 @@ def send_message_to_llm(session_id: str, message: str, access_token : str):
         "chatInput": message
     }
     try:
-        response = requests.post(WEBHOOK_URL, json=payload, headers=headers, timeout=20)
-        print(f"response: " , response)
+        
+        response = requests.post(WEBHOOK_URL, json=payload, headers=headers)
+        print("Output:", response.json().get("output", "No output received"))
         response.raise_for_status()
-        print(f"response.status_code: {response.json()}")
-        print(f"response.text: {response.text}")
-        return response.json().get("output", "Không nhận được phản hồi từ LLM.")
+        return response.json().get("output", "No output received")
     except requests.exceptions.HTTPError as http_err:
         return f"Lỗi: Lỗi HTTP - {http_err} - {response.text}"
     except requests.exceptions.ConnectionError as conn_err:
