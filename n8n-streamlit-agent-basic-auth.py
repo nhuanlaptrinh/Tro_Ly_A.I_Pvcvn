@@ -12,8 +12,8 @@ def rfile(name_file):
 
 
 # Constants
-WEBHOOK_URL = "https://anhlaptrinh.online/webhook-test/invoke_agent"
-BEARER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjN2Y1MTU2My00YzdhLTRlZjgtYmIyMC1mNTAxZGI4ZDc3OWUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzQ3MjAyMTM2fQ.zxA-7lk6iV6_73yFzOPrZrKEG3k7B18Sn5zBzD1m000"
+WEBHOOK_URL = "YOUR_WEB_HOOK_URL"
+BEARER_TOKEN = "YOUR_BEARER_TOKEN_URL"
 
 def generate_session_id():
     return str(uuid.uuid4())

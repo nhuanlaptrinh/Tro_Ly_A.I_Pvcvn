@@ -3,13 +3,12 @@ import requests
 import uuid
 from supabase import create_client, Client
 
-SUPABASE_URL = "https://ipacyvrxjfihljfqzadj.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlwYWN5dnJ4amZpaGxqZnF6YWRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxOTI3ODEsImV4cCI6MjA2Mjc2ODc4MX0.baOlVu9mFvdQpKmpraksvkGuS9gt8XzpIsNEQcPpqOw"
-BEARER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjN2Y1MTU2My00YzdhLTRlZjgtYmIyMC1mNTAxZGI4ZDc3OWUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzQ3MjAyMTM2fQ.zxA-7lk6iV6_73yFzOPrZrKEG3k7B18Sn5zBzD1m000"
+SUPABASE_URL = "YOUR_SUPABASE_URL"
+SUPABASE_KEY = "YOUR_SUPABASE_KEY"
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-WEBHOOK_URL = "https://anhlaptrinh.online/webhook-test/invoke_agent"
+WEBHOOK_URL = "YOUR_WEB_HOOK_N8N_URL"
 
 def rfile(name_file):
     try:
@@ -41,7 +40,7 @@ def send_message_to_llm(session_id: str, message: str, access_token : str):
     print(f"Access Token: {access_token}")
 
     headers = {
-        "Authorization": f"Bearer {BEARER_TOKEN }",
+        "Authorization": f"Bearer {access_token }",
         "Content-Type": "application/json"
     }
     payload = {
