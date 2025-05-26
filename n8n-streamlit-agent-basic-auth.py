@@ -47,7 +47,6 @@ def main():
 
 
     title_content = rfile("00.xinchao.txt")
-    print ("title_content",title_content)
     st.markdown(
         f"""<h1 style="text-align: center; font-size: 24px;">{title_content}</h1>""",
         unsafe_allow_html=True
