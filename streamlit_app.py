@@ -13,8 +13,7 @@ def rfile(name_file):
 
 # Constants
 BEARER_TOKEN = st.secrets.get("BEARER_TOKEN")
-WEBHOOK_URL = st.secrets.get("WEBHOOK_URL")
-
+WEBHOOK_URL = rfile("WEBHOOK_URL.txt")
 def generate_session_id():
     return str(uuid.uuid4())
 
